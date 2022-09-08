@@ -1,7 +1,7 @@
 package com.simplekjl.domain
 
-import com.simplekjl.domain.model.Business
+import com.simplekjl.domain.model.Restaurant
 
 interface StoresRepository {
-    fun getAllStores(): List<Business>
+    fun getAllStores(): List<Restaurant>
 }
