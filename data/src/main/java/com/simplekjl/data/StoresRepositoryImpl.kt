@@ -13,12 +13,9 @@ import com.simplekjl.domain.model.Status.CLOSED
 import com.simplekjl.domain.model.Status.OPEN
 import com.simplekjl.domain.model.Status.ORDER_AHEAD
 import java.io.IOException
-import org.koin.java.KoinJavaComponent.get
 
 
-class StoresRepositoryImpl : StoresRepository {
-
-    private val assetManager: AssetManager = get(AssetManager::class.java)
+class StoresRepositoryImpl(private val assetManager: AssetManager) : StoresRepository {
 
     override fun getAllStores(): List<RestaurantDetails> {
         return try {
