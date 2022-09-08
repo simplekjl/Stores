@@ -1,4 +1,5 @@
 object Versions {
+    const val junit4 = "4.13.2"
     const val gradlePlugin = "7.0.1"
     const val kotlin = "1.5.31"
     const val kotlinx = "1.5.2"

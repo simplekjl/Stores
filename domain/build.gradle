@@ -35,4 +35,7 @@ dependencies {
 
     implementation KoinLibraries.core
     implementation KoinLibraries.test
+    testImplementation Libraries.junit4
+    testImplementation Libraries.fixture
+    testImplementation MockkLibraries.mockk
 }

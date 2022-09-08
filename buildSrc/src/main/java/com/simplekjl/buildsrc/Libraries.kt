@@ -1,5 +1,7 @@
 object Libraries {
 
+    const val junit4 = "junit:junit:${Versions.junit4}"
+
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     const val libPhoneNumberAndroid =
