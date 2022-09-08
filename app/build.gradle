@@ -70,6 +70,8 @@ dependencies {
 
     // Koin
     implementation KoinLibraries.core
+    implementation KoinLibraries.android
+    implementation KoinLibraries.compose
 
     // Google
     implementation GoogleLibraries.material

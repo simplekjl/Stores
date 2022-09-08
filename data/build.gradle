@@ -30,6 +30,10 @@ android {
 }
 
 dependencies {
-
+    implementation project(path: ':domain')
     testImplementation 'junit:junit:4.13.2'
+    implementation KoinLibraries.core
+    implementation KoinLibraries.test
+
+    implementation Libraries.gson
 }
