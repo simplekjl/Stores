@@ -12,9 +12,9 @@ android {
     compileSdk Configs.compilation
 
     defaultConfig {
-        applicationId "com.simplekjl.stores"
-        minSdk 23
-        targetSdk 32
+        applicationId Configs.applicationId
+        minSdk Configs.minSdk
+        targetSdk Configs.target
         versionCode 1
         versionName "1.0"
 
