@@ -3,6 +3,11 @@ package com.simplekjl.data.model
 import com.google.gson.annotations.SerializedName
 
 data class RestaurantsRaw(
+    @SerializedName("restaurants")
+    val restaurants: List<RestaurantDetailsRaw>
+)
+
+data class RestaurantDetailsRaw(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
