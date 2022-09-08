@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply from: "$rootProject.projectDir/ktlint.gradle"
+
+android {
+    compileSdkVersion Configs.compilation
+
+    defaultConfig {
+        minSdkVersion Configs.minSdk
+        targetSdkVersion Configs.target
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner Configs.testRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        qa {
+            initWith debug
+            matchingFallbacks = ['debug']
+        }
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    //Kotlin
+    implementation JetbrainsLibraries.kotlin
+    implementation JetbrainsLibraries.coroutinesCore
+
+    // Koin
+    implementation KoinLibraries.core
+
+}
