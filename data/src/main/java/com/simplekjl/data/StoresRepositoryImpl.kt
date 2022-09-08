@@ -1,6 +1,6 @@
 package com.simplekjl.data
 
-import com.simplekjl.domain.LocalSource
+import com.simplekjl.data.mapper.toModel
 import com.simplekjl.domain.StoresRepository
 import com.simplekjl.domain.model.RestaurantDetails
 
@@ -9,6 +9,6 @@ class StoresRepositoryImpl(
 ) : StoresRepository {
 
     override fun getAllStores(): List<RestaurantDetails> {
-        return localSource.getStores()
+        return localSource.getStores().toModel()
     }
 }

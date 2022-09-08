@@ -1,12 +1,15 @@
 package com.simplekjl.data
 
 import com.appmattus.kotlinfixture.kotlinFixture
-import com.simplekjl.domain.LocalSource
+import com.google.common.truth.Truth.assertThat
+import com.simplekjl.data.model.RestaurantDetailsRaw
 import com.simplekjl.domain.StoresRepository
 import com.simplekjl.domain.model.RestaurantDetails
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.unmockkAll
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertTrue
@@ -34,8 +37,15 @@ internal class StoresRepositoryImplTest {
 
     @Test
     fun `verify localSource returns Store details values`() {
-        val listOfStores: List<RestaurantDetails> = fixture()
+        val listOfStores: List<RestaurantDetailsRaw> = fixture()
         every { localSource.getStores() } returns listOfStores
-        assertTrue(repository.getAllStores().isNotEmpty())
+        val result = repository.getAllStores()
+        assertTrue(result.isNotEmpty())
+        assertThat(result.any()).isInstanceOf(RestaurantDetails::class.java)
+    }
+
+    @After
+    fun tearDown() {
+        unmockkAll()
     }
 }

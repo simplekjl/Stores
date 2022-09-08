@@ -3,20 +3,18 @@ package com.simplekjl.data
 import android.content.res.AssetManager
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import com.simplekjl.data.mapper.toModel
+import com.simplekjl.data.model.RestaurantDetailsRaw
 import com.simplekjl.data.model.RestaurantsRaw
-import com.simplekjl.domain.LocalSource
-import com.simplekjl.domain.model.RestaurantDetails
 import java.io.IOException
 
 class LocalSourceImpl(
     private val assetManager: AssetManager
 ) : LocalSource {
-    override fun getStores(): List<RestaurantDetails> {
+    override fun getStores(): List<RestaurantDetailsRaw> {
         return try {
             val storesString = readStoresJsonFile()
             val storeModels = parseStoresStringToModel(storesString)
-            storeModels.toModel()
+            storeModels.restaurants
         } catch (ex: Exception) {
             emptyList()
         }

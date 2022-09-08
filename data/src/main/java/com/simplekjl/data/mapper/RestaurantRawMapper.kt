@@ -1,6 +1,6 @@
 package com.simplekjl.data.mapper
 
-import com.simplekjl.data.model.RestaurantsRaw
+import com.simplekjl.data.model.RestaurantDetailsRaw
 import com.simplekjl.data.model.SortingValuesRaw
 import com.simplekjl.domain.model.RestaurantDetails
 import com.simplekjl.domain.model.SortingValues
@@ -9,9 +9,9 @@ import com.simplekjl.domain.model.Status.CLOSED
 import com.simplekjl.domain.model.Status.OPEN
 import com.simplekjl.domain.model.Status.ORDER_AHEAD
 
-fun RestaurantsRaw.toModel(): List<RestaurantDetails> {
+fun List<RestaurantDetailsRaw>.toModel(): List<RestaurantDetails> {
     val finalList = mutableListOf<RestaurantDetails>()
-    this.restaurants.forEach { item ->
+    this.forEach { item ->
         finalList.add(
             RestaurantDetails(
                 item.id,
