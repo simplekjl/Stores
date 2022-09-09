@@ -1,7 +1,7 @@
 apply from: "$rootProject.projectDir/common-library.gradle"
 dependencies {
     implementation KoinLibraries.core
-    implementation KoinLibraries.test
+    testImplementation KoinLibraries.test
     testImplementation Libraries.junit4
     testImplementation Libraries.fixture
     testImplementation MockkLibraries.mockk
