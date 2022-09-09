@@ -1,4 +1,4 @@
-package com.simplekjl.data
+package com.simplekjl.data.local
 
 import com.simplekjl.data.model.RestaurantDetailsRaw
 

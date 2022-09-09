@@ -1,4 +1,4 @@
-package com.simplekjl.data
+package com.simplekjl.data.local
 
 import android.content.res.AssetManager
 import com.google.gson.Gson

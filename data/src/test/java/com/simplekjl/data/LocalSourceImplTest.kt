@@ -2,6 +2,8 @@ package com.simplekjl.data
 
 import android.content.res.AssetManager
 import com.google.common.truth.Truth.assertThat
+import com.simplekjl.data.local.LocalSource
+import com.simplekjl.data.local.LocalSourceImpl
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
