@@ -10,7 +10,7 @@ import java.io.IOException
 class LocalSourceImpl(
     private val assetManager: AssetManager
 ) : LocalSource {
-    override fun getStores(): List<RestaurantDetailsRaw> {
+    override fun getRestaurants(): List<RestaurantDetailsRaw> {
         return try {
             val storesString = readStoresJsonFile()
             val storeModels = parseStoresStringToModel(storesString)

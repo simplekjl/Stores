@@ -30,7 +30,7 @@ internal class LocalSourceImplTest {
     @Test
     fun `when read json file fail return empty list`() {
         every { assetManager.open(any()) } throws Exception()
-        assertTrue(localSource.getStores().isEmpty())
+        assertTrue(localSource.getRestaurants().isEmpty())
     }
 
     @Test
@@ -38,7 +38,7 @@ internal class LocalSourceImplTest {
         every { assetManager.open(any()) } returns ByteArrayInputStream(
             TestData.restaurantsJsonString.toByteArray()
         )
-        assertThat(localSource.getStores()).isNotEmpty()
+        assertThat(localSource.getRestaurants()).isNotEmpty()
     }
 
     @After
