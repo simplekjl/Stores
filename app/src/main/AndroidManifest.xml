@@ -4,7 +4,7 @@
     package="com.simplekjl.stores">
 
     <application
-        android:name=".StoresApplication"
+        android:name=".di.StoresApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

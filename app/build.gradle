@@ -109,10 +109,14 @@ dependencies {
 
     // Used for displaying Preview
     implementation ComposeLibraries.activity
+    implementation Libraries.fixture
 
     androidTestImplementation ComposeLibraries.uiTestJunit4
     testImplementation ComposeLibraries.uiTestJunit4
     debugImplementation ComposeLibraries.uiTest
 
     testImplementation Libraries.robolectric
+
+    debugApi "androidx.customview:customview:1.2.0-alpha01"
+    debugApi "androidx.customview:customview-poolingcontainer:1.0.0"
 }
