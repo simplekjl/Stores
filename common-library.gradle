@@ -53,5 +53,6 @@ dependencies {
     testImplementation Libraries.fixture
     testImplementation MockkLibraries.mockk
     testImplementation GoogleLibraries.truth
+    testImplementation JetbrainsLibraries.coroutinesTest
 
 }
