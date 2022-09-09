@@ -4,8 +4,8 @@ import com.appmattus.kotlinfixture.kotlinFixture
 import com.google.common.truth.Truth.assertThat
 import com.simplekjl.data.local.LocalSource
 import com.simplekjl.data.model.RestaurantDetailsRaw
-import com.simplekjl.domain.repository.RestaurantsRepository
 import com.simplekjl.domain.model.RestaurantDetails
+import com.simplekjl.domain.repository.RestaurantsRepository
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
