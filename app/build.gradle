@@ -106,6 +106,9 @@ dependencies {
     implementation ComposeLibraries.foundation
     // Material Design
     implementation ComposeLibraries.material
+    // Navigation
+    implementation ComposeLibraries.navigation
+    implementation ComposeLibraries.runtime
 
     // Used for displaying Preview
     implementation ComposeLibraries.activity
