@@ -1,4 +1,4 @@
-package com.simplekjl.stores
+package com.simplekjl.stores.ui.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +26,7 @@ import com.simplekjl.domain.model.SortingValues
 import com.simplekjl.domain.model.Status.CLOSED
 import com.simplekjl.domain.model.Status.OPEN
 import com.simplekjl.domain.model.Status.ORDER_AHEAD
+import com.simplekjl.stores.R.string
 import com.simplekjl.stores.ui.theme.StoresTheme
 
 
@@ -77,7 +78,7 @@ fun RestaurantItem(
 @Composable
 fun FilterItemPreview() {
     StoresTheme {
-        FilterItem(filterName = R.string.app_name)
+        FilterItem(filterName = string.app_name)
 
     }
 }
