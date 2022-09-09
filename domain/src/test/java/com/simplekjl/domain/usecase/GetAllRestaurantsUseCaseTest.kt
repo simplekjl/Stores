@@ -1,6 +1,5 @@
 package com.simplekjl.domain.usecase
 
-import com.appmattus.kotlinfixture.Fixture
 import com.simplekjl.domain.repository.RestaurantsRepository
 import com.simplekjl.domain.utils.MainCoroutineRule
 import io.mockk.MockKAnnotations
