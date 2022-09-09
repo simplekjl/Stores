@@ -1,4 +1,4 @@
-package com.simplekjl.domain
+package com.simplekjl.domain.repository
 
 import com.simplekjl.domain.model.RestaurantDetails
 

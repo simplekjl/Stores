@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.simplekjl.domain.StoresRepository
+import com.simplekjl.domain.repository.StoresRepository
 import com.simplekjl.stores.ui.theme.StoresTheme
 import org.koin.android.ext.android.inject
 
