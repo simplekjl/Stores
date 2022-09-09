@@ -37,10 +37,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.simplekjl.stores.R.string
 import com.simplekjl.stores.ui.theme.StoresTheme
 
 
@@ -177,7 +179,6 @@ fun SearchBar(
 
     })
 
-
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
     }
@@ -186,13 +187,10 @@ fun SearchBar(
 
 @Composable
 fun NoSearchResults() {
-
     Column(
         modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = CenterHorizontally
     ) {
-
-        Text("No matches found")
-
+        Text(stringResource(string.no_restaurants_found))
     }
 }
