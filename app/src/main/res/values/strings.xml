@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Stores</string>
+    <string name="no_restaurants_found">No restaurants found</string>
+    <string name="takeaway_title">Takeaway</string>
+    <string name="restaurant_around_label">Restaurants in the neighborhood</string>
+    <string name="search_restaurants_hint">Search restaurants</string>
 </resources>

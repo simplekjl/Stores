@@ -1,10 +1,11 @@
 object Versions {
+    const val nav_version ="2.5.2"
     const val junit4 = "4.13.2"
     const val gradlePlugin = "7.0.1"
     const val kotlin = "1.7.0"
     const val kotlinx = "1.5.2"
 
-    const val koin = "3.1.2"
+    const val koin = "3.2.0-beta-1"
     const val mockk = "1.12.0"
 
     const val appsync = "3.2.1"

@@ -56,15 +56,6 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
 
-    // need this for android instrumentation tests run
-    androidTestImplementation ComposeLibraries.activity
-
-    testImplementation AndroidxTestLibraries.archCoreTest
-    testImplementation AndroidxTestLibraries.core
-    testImplementation AndroidxTestLibraries.testJunit
-    testImplementation AndroidxTestLibraries.testRules
-
-    testImplementation Libraries.robolectric
     // Kotlin
     implementation JetbrainsLibraries.kotlin
     implementation JetbrainsLibraries.coroutinesCore
@@ -106,13 +97,32 @@ dependencies {
     implementation ComposeLibraries.foundation
     // Material Design
     implementation ComposeLibraries.material
+    // Navigation
+    implementation ComposeLibraries.navigation
+    implementation ComposeLibraries.runtime
 
     // Used for displaying Preview
     implementation ComposeLibraries.activity
+    implementation Libraries.fixture
 
     androidTestImplementation ComposeLibraries.uiTestJunit4
     testImplementation ComposeLibraries.uiTestJunit4
     debugImplementation ComposeLibraries.uiTest
 
     testImplementation Libraries.robolectric
+
+    // need this for android instrumentation tests run
+    androidTestImplementation ComposeLibraries.activity
+
+    testImplementation AndroidxTestLibraries.archCoreTest
+    testImplementation AndroidxTestLibraries.core
+    testImplementation AndroidxTestLibraries.testJunit
+    testImplementation AndroidxTestLibraries.testRules
+    testImplementation MockkLibraries.mockk
+    testImplementation MockkLibraries.mockkAndroid
+
+    testImplementation Libraries.robolectric
+
+    debugApi "androidx.customview:customview:1.2.0-alpha01"
+    debugApi "androidx.customview:customview-poolingcontainer:1.0.0"
 }

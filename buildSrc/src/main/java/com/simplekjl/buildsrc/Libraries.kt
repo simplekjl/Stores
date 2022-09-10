@@ -169,4 +169,6 @@ object ComposeLibraries {
     const val activity = "androidx.activity:activity-compose:${Versions.composeUi}"
     const val runtime = "androidx.compose.runtime:runtime:${Versions.composeUi}"
     const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.composeUi}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_version}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03"
 }
