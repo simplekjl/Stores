@@ -21,7 +21,7 @@ class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestauran
             when (result) {
                 is Error -> {/*nothing at the moment*/
                 }
-                is Success -> _restaurantList.emit(result.data)
+                is Success -> _restaurantList.emit(result.data.sortedBy { it.status })
             }
         }
     }

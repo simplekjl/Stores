@@ -18,8 +18,5 @@ data class SortingValues(
     val minCost: Int
 )
 
-sealed class Status {
-    object ORDER_AHEAD : Status()
-    object CLOSED : Status()
-    object OPEN : Status()
-}
+// this enum should be treated with care, the sorting depends on this order
+enum class Status { OPEN, ORDER_AHEAD, CLOSED }
