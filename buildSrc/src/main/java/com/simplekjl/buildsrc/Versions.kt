@@ -5,7 +5,7 @@ object Versions {
     const val kotlin = "1.7.0"
     const val kotlinx = "1.5.2"
 
-    const val koin = "3.1.2"
+    const val koin = "3.2.0-beta-1"
     const val mockk = "1.12.0"
 
     const val appsync = "3.2.1"
