@@ -17,6 +17,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.random.Random
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class RestaurantsViewModelTest {
@@ -30,8 +31,8 @@ internal class RestaurantsViewModelTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     private val fixture: Fixture = kotlinFixture {
-        // assign all stores as open
-        factory<Status> { Status.OPEN }
+        // random status values for the fixture store
+        factory { Status.values()[Random.nextInt(Status.values().size)] }
     }
 
     @Before
@@ -52,6 +53,16 @@ internal class RestaurantsViewModelTest {
         coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(result)
         viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
         assert(viewModel.restaurantsList.value.isNotEmpty())
+    }
+
+    @Test
+    fun `when viewModel is initialized, restaurantsList is not empty and is sorted`() {
+        val result: List<RestaurantDetails> = fixture()
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(result)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        assert(viewModel.restaurantsList.value.isNotEmpty())
+        assert(viewModel.restaurantsList.value.first().status == Status.OPEN)
+        assert(viewModel.restaurantsList.value.last().status == Status.CLOSED)
     }
 
     @After
