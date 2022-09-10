@@ -12,6 +12,13 @@ import kotlinx.coroutines.launch
 
 class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestaurantsUseCase) :
     ViewModel() {
+
+    fun createFilterMap(filterList: Array<String>): Map<Int, String> {
+        val filtersMap = mutableMapOf<Int, String>()
+        filterList.forEachIndexed { index, s -> filtersMap[index] = s }
+        return filtersMap
+    }
+
     private val _restaurantList = MutableStateFlow<List<RestaurantDetails>>(emptyList())
     val restaurantsList: StateFlow<List<RestaurantDetails>> = _restaurantList
 
