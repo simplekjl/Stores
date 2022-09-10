@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.simplekjl.stores.ui.screens.restaurants.RestaurantsList
 import com.simplekjl.stores.ui.screens.restaurants.RestaurantsViewModel
+import com.simplekjl.stores.ui.screens.search.RestaurantSearch
+import com.simplekjl.stores.ui.screens.search.RestaurantSearchViewModel
 import org.koin.androidx.compose.viewModel
 
 
@@ -23,7 +25,7 @@ enum class NavPath(
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
-fun AppNavHost(navHostController: NavHostController, scaffoldState: ScaffoldState) {
+fun AppNavHost(navHostController: NavHostController) {
     NavHost(
         navController = navHostController,
         startDestination = NavPath.RestaurantsList.route
@@ -37,12 +39,12 @@ fun AppNavHost(navHostController: NavHostController, scaffoldState: ScaffoldStat
             )
         }
 
-//        composable(NavPath.RestaurantsSearch.route) {
-//            RestaurantSearch(
-//                navHostController = navHostController
-//            )
-//        }
-
+        composable(NavPath.RestaurantsSearch.route) {
+            val restaurantsSearchViewModel: RestaurantSearchViewModel by viewModel()
+            RestaurantSearch(
+                navHostController = navHostController,
+                searchViewModel = restaurantsSearchViewModel
+            )
+        }
     }
-
 }

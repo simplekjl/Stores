@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class RestaurantsViewModel(getAllRestaurantsUseCase: GetAllRestaurantsUseCase) :
+class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestaurantsUseCase) :
     ViewModel() {
     private val _restaurantList = MutableStateFlow<List<RestaurantDetails>>(emptyList())
     val restaurantsList: StateFlow<List<RestaurantDetails>> = _restaurantList
