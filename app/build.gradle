@@ -56,15 +56,6 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
 
-    // need this for android instrumentation tests run
-    androidTestImplementation ComposeLibraries.activity
-
-    testImplementation AndroidxTestLibraries.archCoreTest
-    testImplementation AndroidxTestLibraries.core
-    testImplementation AndroidxTestLibraries.testJunit
-    testImplementation AndroidxTestLibraries.testRules
-
-    testImplementation Libraries.robolectric
     // Kotlin
     implementation JetbrainsLibraries.kotlin
     implementation JetbrainsLibraries.coroutinesCore
@@ -117,6 +108,18 @@ dependencies {
     androidTestImplementation ComposeLibraries.uiTestJunit4
     testImplementation ComposeLibraries.uiTestJunit4
     debugImplementation ComposeLibraries.uiTest
+
+    testImplementation Libraries.robolectric
+
+    // need this for android instrumentation tests run
+    androidTestImplementation ComposeLibraries.activity
+
+    testImplementation AndroidxTestLibraries.archCoreTest
+    testImplementation AndroidxTestLibraries.core
+    testImplementation AndroidxTestLibraries.testJunit
+    testImplementation AndroidxTestLibraries.testRules
+    testImplementation MockkLibraries.mockk
+    testImplementation MockkLibraries.mockkAndroid
 
     testImplementation Libraries.robolectric
 
