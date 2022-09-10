@@ -4,4 +4,22 @@
     <string name="takeaway_title">Takeaway</string>
     <string name="restaurant_around_label">Restaurants in the neighborhood</string>
     <string name="search_restaurants_hint">Search restaurants</string>
+    <string name="filter_best_match">Best match</string>
+    <string name="filter_newest">Newest</string>
+    <string name="filter_rating_average"> Rating Average</string>
+    <string name="filter_distance">Distance</string>
+    <string name="filter_popularity">Popularity</string>
+    <string name="filter_average_product_price">Price</string>
+    <string name="filter_delivery_cost">Delivery</string>
+    <string name="filter_min_cost">Min. Cost</string>
+    <string-array name="restaurant_filters">
+        <item>@string/filter_best_match</item>
+        <item>@string/filter_newest</item>
+        <item>@string/filter_rating_average</item>
+        <item>@string/filter_distance</item>
+        <item>@string/filter_popularity</item>
+        <item>@string/filter_average_product_price</item>
+        <item>@string/filter_delivery_cost</item>
+        <item>@string/filter_min_cost</item>
+    </string-array>
 </resources>

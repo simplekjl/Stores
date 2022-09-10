@@ -1,6 +1,5 @@
 package com.simplekjl.stores.ui.components
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.simplekjl.domain.model.RestaurantDetails
@@ -26,7 +24,6 @@ import com.simplekjl.domain.model.SortingValues
 import com.simplekjl.domain.model.Status.CLOSED
 import com.simplekjl.domain.model.Status.OPEN
 import com.simplekjl.domain.model.Status.ORDER_AHEAD
-import com.simplekjl.stores.R.string
 import com.simplekjl.stores.ui.theme.StoresTheme
 
 
@@ -78,7 +75,7 @@ fun RestaurantItem(
 @Composable
 fun FilterItemPreview() {
     StoresTheme {
-        FilterItem(filterName = string.app_name)
+        FilterItem(filterName = "Cheapest")
 
     }
 }
@@ -86,9 +83,9 @@ fun FilterItemPreview() {
 @Composable
 fun FilterItem(
     modifier: Modifier = Modifier,
-    @StringRes filterName: Int,
+    filterName: String,
 ) {
-    val checkedState = remember { mutableStateOf(true) }
+    val checkedState = remember { mutableStateOf(false) }
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Start,
@@ -98,6 +95,6 @@ fun FilterItem(
             checked = checkedState.value,
             onCheckedChange = { checkedState.value = it }
         )
-        Text(modifier = Modifier.padding(end = 8.dp), text = stringResource(id = filterName))
+        Text(modifier = Modifier.padding(end = 8.dp), text = filterName)
     }
 }
