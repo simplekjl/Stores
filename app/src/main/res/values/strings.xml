@@ -12,7 +12,9 @@
     <string name="filter_average_product_price">Price</string>
     <string name="filter_delivery_cost">Delivery</string>
     <string name="filter_min_cost">Min. Cost</string>
+    <string name="filter_title">Filter by </string>
     <string-array name="restaurant_filters">
+        <item>@string/filter_title</item>
         <item>@string/filter_best_match</item>
         <item>@string/filter_newest</item>
         <item>@string/filter_rating_average</item>
