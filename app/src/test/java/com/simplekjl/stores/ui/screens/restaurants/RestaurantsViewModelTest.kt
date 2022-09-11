@@ -57,16 +57,43 @@ internal class RestaurantsViewModelTest {
 
     @Test
     fun `when viewModel is initialized, restaurantsList is not empty and is sorted`() {
-        val result: List<RestaurantDetails> = fixture()
-        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(result)
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
         viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
         assert(viewModel.restaurantsList.value.isNotEmpty())
         assert(viewModel.restaurantsList.value.first().status == Status.OPEN)
         assert(viewModel.restaurantsList.value.last().status == Status.CLOSED)
     }
 
+    @Test
+    fun `when createFiltersMap(array) then return map with same number of elements in order `() {
+        val filters: Array<String> = fixture()
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        val filtersMap = viewModel.createFilterMap(filters)
+        assert(filtersMap.size == filters.size)
+        assert(filtersMap[0] == filters[0])
+        assert(filtersMap[filters.size - 1] == filters[filtersMap.size - 1])
+    }
+
+    @Test
+    fun `when bestMatch filter is selected, return sorted list`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fixture())
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        val originalList = viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(1)
+        assert(viewModel.restaurantsList.value != originalList)
+    }
+
     @After
     fun tearDown() {
         unmockkAll()
     }
+
+    private val fakeRestaurantList = listOf(
+        RestaurantDetails(1, "", Status.OPEN, fixture()),
+        RestaurantDetails(3, "", Status.CLOSED, fixture()),
+        RestaurantDetails(1, "", Status.OPEN, fixture()),
+        RestaurantDetails(3, "", Status.ORDER_AHEAD, fixture()),
+        RestaurantDetails(1, "", Status.ORDER_AHEAD, fixture()),
+        RestaurantDetails(3, "", Status.CLOSED, fixture()),
+    )
 }
