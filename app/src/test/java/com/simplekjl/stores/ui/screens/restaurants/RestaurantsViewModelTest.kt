@@ -74,6 +74,15 @@ internal class RestaurantsViewModelTest {
         assert(filtersMap[filters.size - 1] == filters[filtersMap.size - 1])
     }
 
+    @Test
+    fun `when bestMatch filter is selected, return sorted list`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fixture())
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        val originalList = viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(1)
+        assert(viewModel.restaurantsList.value != originalList)
+    }
+
     @After
     fun tearDown() {
         unmockkAll()
