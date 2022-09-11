@@ -61,7 +61,7 @@ fun RestaurantsList(
             FilterSpinner(
                 restaurantsViewModel.createFilterMap(filterList),
                 preselected = 0,
-                onSelectionChanged = { },
+                onSelectionChanged = { restaurantsViewModel.applyFilterToRestaurantList(it) },
                 modifier = Modifier.width(150.dp)
             )
         }
