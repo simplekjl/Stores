@@ -97,3 +97,4 @@ lint/tmp/
 /captures
 .cxx
 /.idea/misc.xml
+/.idea/deploymentTargetDropDown.xml

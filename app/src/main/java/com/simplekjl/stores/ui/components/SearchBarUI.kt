@@ -38,13 +38,13 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.simplekjl.stores.R
-import com.simplekjl.stores.R.string
 import com.simplekjl.stores.ui.theme.StoresTheme
 
 
@@ -193,21 +193,22 @@ fun NoSearchResults() {
         modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = CenterHorizontally
     ) {
-        Text(stringResource(string.no_restaurants_found))
+        Text(stringResource(R.string.no_restaurants_found))
     }
 }
 
 
 @Composable
-fun SearchViewDemoTopAppBar(onSearchBarClick: () -> Unit) {
-    TopAppBar(title = { Text(stringResource(R.string.takeaway_title)) }, actions = {
-        IconButton(
-            modifier = Modifier,
-            onClick = { onSearchBarClick() }) {
-            Icon(
-                Icons.Filled.Search,
-                contentDescription = null
-            )
-        }
-    })
+fun SearchViewTopAppBar(onSearchBarClick: () -> Unit) {
+    TopAppBar(title = { Text(stringResource(R.string.takeaway_title)) },
+        actions = {
+            IconButton(
+                modifier = Modifier.testTag("iconSearch"),
+                onClick = { onSearchBarClick() }) {
+                Icon(
+                    Icons.Filled.Search,
+                    contentDescription = stringResource(R.string.search_icon_description),
+                )
+            }
+        })
 }
