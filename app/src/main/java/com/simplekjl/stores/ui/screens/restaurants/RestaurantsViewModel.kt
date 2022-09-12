@@ -40,28 +40,28 @@ class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestauran
             _restaurantList.value.apply {
                 _restaurantList.emit(
                     when (filterId) {
-                        1 /*best match*/ -> {
+                        1 /*best match h-m*/ -> {
                             sortedBy { it.sortingValues.bestMatch }
                         }
-                        2 /*newest*/ -> {
+                        2 /*newest h-m*/ -> {
                             sortedBy { it.sortingValues.newest }
                         }
-                        3 /*rating*/ -> {
+                        3 /*rating h-m*/ -> {
                             sortedBy { it.sortingValues.ratingAverage }
                         }
-                        4 /*distance*/ -> {
+                        4 /*distance m-h*/ -> {
                             sortedBy { it.sortingValues.distance }
                         }
-                        6 /*Popular*/ -> {
+                        6 /*Popular  h-m*/ -> {
                             sortedBy { it.sortingValues.popularity }
                         }
-                        7 /*price*/ -> {
+                        7 /*price m-h*/ -> {
                             sortedBy { it.sortingValues.averageProductPrice }
                         }
-                        8 /*delivery*/ -> {
+                        8 /*delivery m-h*/ -> {
                             sortedBy { it.sortingValues.deliveryCost }
                         }
-                        9 /*costs*/ -> {
+                        9 /*costs m-h*/ -> {
                             sortedBy { it.sortingValues.minCost }
                         }
                         else /*No filter */ -> {
