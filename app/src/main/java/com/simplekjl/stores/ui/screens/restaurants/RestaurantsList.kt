@@ -28,7 +28,7 @@ import com.simplekjl.stores.R
 import com.simplekjl.stores.navigation.NavPath
 import com.simplekjl.stores.ui.components.FilterSpinner
 import com.simplekjl.stores.ui.components.RestaurantItem
-import com.simplekjl.stores.ui.components.SearchViewDemoTopAppBar
+import com.simplekjl.stores.ui.components.SearchViewTopAppBar
 
 @Composable
 fun RestaurantsList(
@@ -38,9 +38,11 @@ fun RestaurantsList(
     val filterList: Array<String> = stringArrayResource(id = R.array.restaurant_filters)
     val restaurants by restaurantsViewModel.restaurantsList.collectAsState()
     Column(modifier = Modifier.fillMaxSize()) {
-        SearchViewDemoTopAppBar(onSearchBarClick = {
-            navHostController.navigate(route = NavPath.RestaurantsSearch.route)
-        })
+        SearchViewTopAppBar(
+            R.string.takeaway_title,
+            onSearchBarClick = {
+                navHostController.navigate(route = NavPath.RestaurantsSearch.route)
+            })
         Row(
             modifier = Modifier
                 .wrapContentWidth()

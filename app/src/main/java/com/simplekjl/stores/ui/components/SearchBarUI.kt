@@ -1,5 +1,6 @@
 package com.simplekjl.stores.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
@@ -38,6 +39,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -96,7 +98,7 @@ fun SearchBarUI(
             )
 
             if (matchesFound) {
-                Text("Results", modifier = Modifier.padding(8.dp), fontWeight = FontWeight.Bold)
+                Text(stringResource(string.results_title), modifier = Modifier.padding(8.dp), fontWeight = FontWeight.Bold)
                 results()
             } else {
                 if (searchText.isNotEmpty()) {
@@ -127,7 +129,8 @@ fun SearchBar(
 
 
     TopAppBar(title = { Text("") }, navigationIcon = {
-        IconButton(onClick = { onNavigateBack() }) {
+        IconButton(modifier = Modifier.testTag("backPress"),
+            onClick = { onNavigateBack() }) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 modifier = Modifier,
@@ -143,7 +146,8 @@ fun SearchBar(
                 .onFocusChanged { focusState ->
                     showClearButton = (focusState.isFocused)
                 }
-                .focusRequester(focusRequester),
+                .focusRequester(focusRequester)
+                .testTag("searchField"),
             value = searchText,
             onValueChange = onSearchTextChanged,
             placeholder = {
@@ -193,16 +197,19 @@ fun NoSearchResults() {
         modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = CenterHorizontally
     ) {
-        Text(stringResource(string.no_restaurants_found))
+        Text(stringResource(R.string.no_restaurants_found))
     }
 }
 
 
 @Composable
-fun SearchViewDemoTopAppBar(onSearchBarClick: () -> Unit) {
-    TopAppBar(title = { Text(stringResource(R.string.takeaway_title)) }, actions = {
+fun SearchViewTopAppBar(
+    @StringRes title : Int,
+    onSearchBarClick: () -> Unit
+) {
+    TopAppBar(title = { Text(stringResource(title))}, actions = {
         IconButton(
-            modifier = Modifier,
+            modifier = Modifier.testTag("iconSearch"),
             onClick = { onSearchBarClick() }) {
             Icon(
                 Icons.Filled.Search,
