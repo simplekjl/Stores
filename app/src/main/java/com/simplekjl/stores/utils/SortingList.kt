@@ -2,15 +2,15 @@ package com.simplekjl.stores.utils
 
 /*
 
-fun applyFilterToRestaurantList(filterId: Int) {
+ fun applyFilterToRestaurantList(filterId: Int) {
         val orderedAndFilteredList = mutableListOf<RestaurantDetails>()
         val openRestaurants = mutableListOf<RestaurantDetails>()
         val orderRestaurants = mutableListOf<RestaurantDetails>()
         val closedRestaurants = mutableListOf<RestaurantDetails>()
         viewModelScope.launch {
-            openRestaurants.addAll(_restaurantList.value.filter { it.status == OPEN })
-            orderRestaurants.addAll(_restaurantList.value.filter { it.status == ORDER_AHEAD })
-            closedRestaurants.addAll(_restaurantList.value.filter { it.status == CLOSED })
+            openRestaurants.addAll(_restaurantList.value.filter { it.status == Status.OPEN })
+            orderRestaurants.addAll(_restaurantList.value.filter { it.status == Status.ORDER_AHEAD })
+            closedRestaurants.addAll(_restaurantList.value.filter { it.status == Status.CLOSED })
 
             orderedAndFilteredList.addAll(applyCurrentFilterToSublist(openRestaurants, filterId))
             orderedAndFilteredList.addAll(applyCurrentFilterToSublist(orderRestaurants, filterId))
@@ -24,30 +24,30 @@ fun applyFilterToRestaurantList(filterId: Int) {
         list: List<RestaurantDetails>,
         filter: Int
     ): List<RestaurantDetails> {
-        return list.apply {
+        return list.run {
             when (filter) {
-                0 /*best match*/ -> {
-                    sortedBy { it.sortingValues.bestMatch }
+                1 /*best match*/ -> {
+                    sortedByDescending { it.sortingValues.bestMatch }
                 }
-                1 /*newest*/ -> {
-                    sortedBy { it.sortingValues.newest }
+                2 /*newest*/ -> {
+                    sortedByDescending { it.sortingValues.newest }
                 }
-                2 /*rating*/ -> {
-                    sortedBy { it.sortingValues.ratingAverage }
+                3 /*rating*/ -> {
+                    sortedByDescending { it.sortingValues.ratingAverage }
                 }
-                3 /*distance*/ -> {
+                4 /*distance*/ -> {
                     sortedBy { it.sortingValues.distance }
                 }
-                4 /*Popular*/ -> {
-                    sortedBy { it.sortingValues.popularity }
+                5 /*Popular*/ -> {
+                    sortedByDescending { it.sortingValues.popularity }
                 }
-                5 /*price*/ -> {
+                6 /*price*/ -> {
                     sortedBy { it.sortingValues.averageProductPrice }
                 }
-                6 /*delivery*/ -> {
+                7 /*delivery*/ -> {
                     sortedBy { it.sortingValues.deliveryCost }
                 }
-                7 /*costs*/ -> {
+                8 /*costs*/ -> {
                     sortedBy { it.sortingValues.minCost }
                 }
                 else -> {

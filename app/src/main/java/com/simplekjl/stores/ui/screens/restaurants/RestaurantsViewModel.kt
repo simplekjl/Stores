@@ -3,6 +3,7 @@ package com.simplekjl.stores.ui.screens.restaurants
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.simplekjl.domain.model.RestaurantDetails
+import com.simplekjl.domain.model.Status
 import com.simplekjl.domain.usecase.GetAllRestaurantsUseCase
 import com.simplekjl.domain.utils.Result.Error
 import com.simplekjl.domain.utils.Result.Success
@@ -19,8 +20,7 @@ class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestauran
 
     init {
         viewModelScope.launch {
-            val result = getAllRestaurantsUseCase.invoke(Unit)
-            when (result) {
+            when (val result = getAllRestaurantsUseCase.invoke(Unit)) {
                 is Error -> {/*nothing at the moment*/
                 }
                 is Success -> _restaurantList.emit(result.data)
@@ -36,39 +36,56 @@ class RestaurantsViewModel(private val getAllRestaurantsUseCase: GetAllRestauran
     }
 
     fun applyFilterToRestaurantList(filterId: Int) {
+        val orderedAndFilteredList = mutableListOf<RestaurantDetails>()
+        val openRestaurants = mutableListOf<RestaurantDetails>()
+        val orderRestaurants = mutableListOf<RestaurantDetails>()
+        val closedRestaurants = mutableListOf<RestaurantDetails>()
         viewModelScope.launch {
-            _restaurantList.value.apply {
-                _restaurantList.emit(
-                    when (filterId) {
-                        1 /*best match*/ -> {
-                            sortedBy { it.sortingValues.bestMatch }
-                        }
-                        2 /*newest*/ -> {
-                            sortedBy { it.sortingValues.newest }
-                        }
-                        3 /*rating*/ -> {
-                            sortedBy { it.sortingValues.ratingAverage }
-                        }
-                        4 /*distance*/ -> {
-                            sortedBy { it.sortingValues.distance }
-                        }
-                        6 /*Popular*/ -> {
-                            sortedBy { it.sortingValues.popularity }
-                        }
-                        7 /*price*/ -> {
-                            sortedBy { it.sortingValues.averageProductPrice }
-                        }
-                        8 /*delivery*/ -> {
-                            sortedBy { it.sortingValues.deliveryCost }
-                        }
-                        9 /*costs*/ -> {
-                            sortedBy { it.sortingValues.minCost }
-                        }
-                        else /*No filter */ -> {
-                            sortedBy { it.status }
-                        }
-                    }
-                )
+            openRestaurants.addAll(_restaurantList.value.filter { it.status == Status.OPEN })
+            orderRestaurants.addAll(_restaurantList.value.filter { it.status == Status.ORDER_AHEAD })
+            closedRestaurants.addAll(_restaurantList.value.filter { it.status == Status.CLOSED })
+
+            orderedAndFilteredList.addAll(applyCurrentFilterToSublist(openRestaurants, filterId))
+            orderedAndFilteredList.addAll(applyCurrentFilterToSublist(orderRestaurants, filterId))
+            orderedAndFilteredList.addAll(applyCurrentFilterToSublist(closedRestaurants, filterId))
+
+            _restaurantList.emit(orderedAndFilteredList)
+        }
+    }
+
+    private fun applyCurrentFilterToSublist(
+        list: List<RestaurantDetails>,
+        filter: Int
+    ): List<RestaurantDetails> {
+        return list.run {
+            when (filter) {
+                1 /*best match*/ -> {
+                    sortedByDescending { it.sortingValues.bestMatch }
+                }
+                2 /*newest*/ -> {
+                    sortedByDescending { it.sortingValues.newest }
+                }
+                3 /*rating*/ -> {
+                    sortedByDescending { it.sortingValues.ratingAverage }
+                }
+                4 /*distance*/ -> {
+                    sortedBy { it.sortingValues.distance }
+                }
+                5 /*Popular*/ -> {
+                    sortedByDescending { it.sortingValues.popularity }
+                }
+                6 /*price*/ -> {
+                    sortedBy { it.sortingValues.averageProductPrice }
+                }
+                7 /*delivery*/ -> {
+                    sortedBy { it.sortingValues.deliveryCost }
+                }
+                8 /*costs*/ -> {
+                    sortedBy { it.sortingValues.minCost }
+                }
+                else -> {
+                    sortedBy { it.status }
+                }
             }
         }
     }

@@ -75,12 +75,83 @@ internal class RestaurantsViewModelTest {
     }
 
     @Test
-    fun `when bestMatch filter is selected, return sorted list`() {
-        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fixture())
+    fun `when bestMatch filter is selected, return sorted list descending order`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
         viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
-        val originalList = viewModel.restaurantsList.value
+        viewModel.restaurantsList.value
         viewModel.applyFilterToRestaurantList(1)
-        assert(viewModel.restaurantsList.value != originalList)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.bestMatch >= list.last().sortingValues.bestMatch)
+    }
+
+    @Test
+    fun `when newest filter is selected, return sorted list descending order  `() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(2)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.newest >= list.last().sortingValues.newest)
+    }
+
+    @Test
+    fun `when ratingAverage filter is selected, return sorted list descending order`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(3)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.ratingAverage >= list.last().sortingValues.ratingAverage)
+    }
+
+    @Test
+    fun `when distance filter is selected, return sorted list ascending order `() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(4)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.distance <= list.last().sortingValues.distance)
+    }
+
+    @Test
+    fun `when popularity filter is selected, return sorted list descending order`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(5)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.popularity >= list.last().sortingValues.popularity)
+    }
+
+    @Test
+    fun `when price filter is selected, return sorted list ascending order `() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(6)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.averageProductPrice <= list.last().sortingValues.averageProductPrice)
+    }
+
+    @Test
+    fun `when delivery filter is selected, return sorted list ascending order`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(7)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.deliveryCost <= list.last().sortingValues.deliveryCost)
+    }
+
+    @Test
+    fun `when minCost filter is selected, return sorted list ascending order`() {
+        coEvery { getAllRestaurantsUseCase.invoke(Unit) } returns Result.Success(fakeRestaurantList)
+        viewModel = RestaurantsViewModel(getAllRestaurantsUseCase)
+        viewModel.restaurantsList.value
+        viewModel.applyFilterToRestaurantList(8)
+        val list = viewModel.restaurantsList.value.filter { it.status == Status.OPEN }
+        assert(list.first().sortingValues.minCost <= list.last().sortingValues.minCost)
     }
 
     @After
