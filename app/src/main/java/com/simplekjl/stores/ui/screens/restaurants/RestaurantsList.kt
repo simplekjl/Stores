@@ -54,7 +54,7 @@ fun RestaurantsList(
                     .wrapContentWidth()
                     .padding(8.dp),
                 fontWeight = FontWeight.Bold,
-                fontSize = 12.sp,
+                fontSize = 14.sp,
                 textAlign = TextAlign.Start
             )
             Spacer(modifier = Modifier.weight(1f))
