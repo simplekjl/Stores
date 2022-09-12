@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.simplekjl.stores.R
+import com.simplekjl.stores.ui.components.NoSearchResults
 import com.simplekjl.stores.ui.components.SearchViewTopAppBar
 import com.simplekjl.stores.ui.theme.StoresTheme
 import org.junit.Rule
@@ -34,6 +35,19 @@ internal class RestaurantsListKtTest {
         composeTestRule.onNodeWithText(title).assertIsDisplayed()
         composeTestRule.onNodeWithTag("iconSearch").assertIsDisplayed()
         composeTestRule.onNodeWithTag("iconSearch").performClick()
-
     }
+
+    @Test
+    fun noResultsTest() {
+        var noResults = ""
+        composeTestRule.setContent {
+            StoresTheme {
+                noResults = stringResource(id = R.string.no_restaurants_found)
+                NoSearchResults()
+            }
+        }
+
+        composeTestRule.onNodeWithText(noResults).assertIsDisplayed()
+    }
+
 }
