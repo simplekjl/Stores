@@ -60,7 +60,7 @@ internal class RestaurantsListKtTest {
         composeTestRule.setContent {
             hint = stringResource(id = R.string.search_restaurants_hint)
             noResults = stringResource(id = R.string.no_restaurants_found)
-            SearchBarUI("",
+            SearchBarUI("los",
                 stringResource(id = R.string.search_restaurants_hint), {}, {}, {}, false, {})
         }
         composeTestRule.onNodeWithTag("backPress").assertIsDisplayed()
