@@ -129,7 +129,8 @@ fun SearchBar(
 
 
     TopAppBar(title = { Text("") }, navigationIcon = {
-        IconButton(onClick = { onNavigateBack() }) {
+        IconButton(modifier = Modifier.testTag("backPress"),
+            onClick = { onNavigateBack() }) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 modifier = Modifier,
@@ -145,7 +146,8 @@ fun SearchBar(
                 .onFocusChanged { focusState ->
                     showClearButton = (focusState.isFocused)
                 }
-                .focusRequester(focusRequester),
+                .focusRequester(focusRequester)
+                .testTag("searchField"),
             value = searchText,
             onValueChange = onSearchTextChanged,
             placeholder = {
