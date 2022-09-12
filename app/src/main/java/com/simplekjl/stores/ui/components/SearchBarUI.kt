@@ -46,6 +46,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.simplekjl.stores.R
+import com.simplekjl.stores.R.string
 import com.simplekjl.stores.ui.theme.StoresTheme
 
 
@@ -97,7 +98,7 @@ fun SearchBarUI(
             )
 
             if (matchesFound) {
-                Text("Results", modifier = Modifier.padding(8.dp), fontWeight = FontWeight.Bold)
+                Text(stringResource(string.results_title), modifier = Modifier.padding(8.dp), fontWeight = FontWeight.Bold)
                 results()
             } else {
                 if (searchText.isNotEmpty()) {
